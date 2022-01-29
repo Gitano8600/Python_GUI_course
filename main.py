@@ -1,8 +1,17 @@
+import tkinter as tk
 from requests import Request, Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 from config import cmc_api_key
 from portfolio import portfolio
+
+portfolio_tracker = tk.Tk()
+portfolio_tracker.title("Portfolio Tracker by Gitano")
+
+name = tk.Label(portfolio_tracker, text="Bitcoin", bg="brown",fg="white")
+name.grid(row=0, column=0)
+portfolio_tracker.mainloop()
+
 
 url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
 parameters = {
