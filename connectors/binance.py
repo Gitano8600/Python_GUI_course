@@ -15,6 +15,7 @@ logger = logging.getLogger()
 
 class BinanceClient:
     def __init__(self, public_key: str, secret_key: str):
+        self.name = "Binance"
         self._base_url = "https://api.binance.com"
 
         self._public_key = public_key
@@ -78,7 +79,6 @@ class BinanceClient:
         balances = dict()
 
         account_data = self._make_request("GET", "/sapi/v1/accountSnapshot", data)
-        print(account_data)
 
         if account_data is not None:
             for a in account_data['snapshotVos'][0]['data']['balances']:

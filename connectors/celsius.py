@@ -10,6 +10,7 @@ logger = logging.getLogger()
 
 class CelsiusClient:
     def __init__(self, public_key: str, secret_key: str):
+        self.name = "Celsius"
         self._base_url = "https://wallet-api.celsius.network/wallet/balance/"
 
         self._public_key = public_key

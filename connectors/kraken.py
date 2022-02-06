@@ -17,10 +17,13 @@ logger = logging.getLogger()
 
 class KrakenClient:
     def __init__(self, public_key: str, secret_key: str):
+        self.name = "Kraken"
         self._base_url = "https://api.kraken.com"
 
         self._public_key = public_key
         self._secret_key = secret_key
+
+        self.balances = self.get_balances()
 
     def _generate_signature(self, endpoint: str, data: typing.Dict, secret: str) -> str:
 
@@ -71,7 +74,6 @@ class KrakenClient:
         if account_data is not None:
             for key, value in account_data['result'].items():
                 if float(value) > 0.0001:
-                    print(f'{key}: {value}')
-                    #balances[a['asset']] = Balance(a, "binance")
+                    balances[key.upper()] = Balance([key.upper(), value], "kraken")
 
-
+        return balances
