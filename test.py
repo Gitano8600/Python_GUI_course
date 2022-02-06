@@ -1,16 +1,22 @@
-from portfolio import bc_data
+from portfolio import es_data
 from connectors.bc import BcConnector
+from connectors.es import EsConnector
 import requests
 import logging
 logger = logging.getLogger()
 
+es_instance = EsConnector(es_data)
 
+for asset in es_instance.balances.values():
+    print(f"{asset.asset}: {asset.balance}")
+
+'''
 bc_instance = BcConnector(bc_data)
 
 for asset in bc_instance.balances.values():
     print(f"{asset.asset}: {asset.balance}")
 
-'''
+
 url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
 parameters = {
   'start':'1',
